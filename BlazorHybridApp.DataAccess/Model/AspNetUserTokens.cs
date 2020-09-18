@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlazorHybridApp.DataAccess.Models
+namespace BlazorHybridApp.DataAccess.Model
 {
     public partial class AspNetUserTokens
     {

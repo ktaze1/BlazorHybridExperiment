@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <DefaultDevice>pixel_3_r_11_0_-_api_30</DefaultDevice>
-    <SelectedDevice>Xiaomi Redmi 6</SelectedDevice>
+    <SelectedDevice>pixel_3_r_11_0_-_api_30</SelectedDevice>
   </PropertyGroup>
 </Project>

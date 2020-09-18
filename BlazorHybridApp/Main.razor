@@ -1,12 +1,22 @@
-﻿<ContentView>
+﻿@inject CounterState CounterState
+
+<ContentView>
     <StackLayout>
         <BlazorWebView ContentRoot="WebUI/wwwroot" VerticalOptions="LayoutOptions.FillAndExpand">
-            <BlazorHybridApp.WebUI.App />
+            <hybridwithIdentity.WebUI.App />
         </BlazorWebView>
-
     </StackLayout>
 </ContentView>
 
 
 @code {
+    protected override void OnInitialized()
+    {
+        CounterState.StateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CounterState.StateChanged -= StateHasChanged;
+    }
 }

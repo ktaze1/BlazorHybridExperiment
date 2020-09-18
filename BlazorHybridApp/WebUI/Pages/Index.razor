@@ -1,70 +1,14 @@
 @page "/"
-@inject AppState appState
-@implements IDisposable
-<h1>Hello, world!</h1>
 
-@if (todos == null)
-{
-    <p>Null</p>
-}
-else
-{<table class="table">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Completed   </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var todo in todos)
-            {
-                <tr>
-                    <td><p>@todo.Date</p></td>
-                    <td><p>@todo.TemperatureC</p></td>
-                    <td><p>@todo.TemperatureF</p></td>
-                    <td> <p>@todo.Summary</p></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello @context.User.Identity.Name !!</h1>
 
+        <p>Welcome to Blazor Learner</p>
 
-@code {
-    List<WeatherForecast> todos;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            todos = await appState.GetForecastAsync();
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"Error {ex.Message}");
-        }
-        appState.OnChange += UpdateState;
-    }
-
-    public void Dispose() => appState.OnChange -= UpdateState;
-
-    private async Task UpdateState()
-    {
-        StateHasChanged();
-    }
-
-
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string Summary { get; set; }
-    }
-}
+        <SurveyPrompt Title="How is Blazor working for you?" />
+    </Authorized>
+    <Authorizing>
+        <h1>Loading ...</h1>
+    </Authorizing>
+</AuthorizeView>
